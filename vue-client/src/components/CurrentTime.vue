@@ -7,6 +7,8 @@
                 <p>Current Time: {{ data.ct }}</p>
                 <p>Language: {{ data.language }}</p>
                 <p>Endpoint Version: {{ data.version }}</p>
+
+                <button  @click="loadData">Refresh</button>
             </div>
             <div v-else>
                 {{ error }}
