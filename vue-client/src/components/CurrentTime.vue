@@ -31,7 +31,7 @@
 
     async function loadData() {
         try {
-            const response = await axios.get<CurrentTimeData>('http://localhost:3000/currentTime');
+            const response = await axios.get<CurrentTimeData>(`${process.env.VUE_APP_BACKEND_API}currentTime`);
             data.value = response.data;
             loading.value = false;
         } catch (err) {
