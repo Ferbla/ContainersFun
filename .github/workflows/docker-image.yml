@@ -22,14 +22,18 @@ jobs:
         path: |
           ~/go/pkg/mod
           ~/.cache/go-build
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-go-${{ hashFiles('**/api/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
-    - name: Change directory to /api
-      run: cd /api
     - name: Install dependencies
+      working-directory: ./api
       run: go mod tidy
     - name: Build
+      working-directory: ./api
       run: go build -o main .
     - name: Run tests
+      working-directory: ./api
       run: go test ./...
+    - name: Build Docker image
+      working-directory: ./api
+      run: docker build -t goAPIProject:latest .
